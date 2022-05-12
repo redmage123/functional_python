@@ -2,8 +2,6 @@
 
 class SkiResort:
 
-
-
     def __init__(self,**kwargs):
         self.name = kwargs['name']
         self.state = kwargs['state']
@@ -24,12 +22,15 @@ class SkiResorts:
     def __init__(self, resort_list = []):
        self.skiresorts_list = resort_list
 
-    def add_skiresort(self,restaurant):
-        self.skiresorts_list.append(restaurant)
+    def add_skiresort(self,ski_resort):
+        self.skiresorts_list.append(ski_resort)
 
 
     def get_list(self):
-        return self.skiresorts_list
+        formatted_list = []
+        for o in self.skiresorts_list:
+            formatted_list.append(o.__str__())
+        return formatted_list
 
     def __iter__(self):
         self.indexvalue = 0
@@ -52,6 +53,8 @@ if __name__ == '__main__':
         skiresorts.add_skiresort(SkiResort(name=data[0], state = data[1], rating= data[2], lifts = data[3], price = data[4]))
 
 
+
+    print (skiresorts.get_list())
 #  Uncomment out the relevant lines to see the output for various sorting criteria.
 
    # for skiresort in skiresorts:
@@ -67,7 +70,8 @@ if __name__ == '__main__':
     #for s in sorted(skiresorts,key=lambda x: x.dayprice, reverse=True):
      #   print (s)
 
-    print ('Sort by descending rating')
-    for s in sorted(skiresorts,reverse=True):
-        print (s)
-
+''' 
+     print ('Sort by descending rating')
+     for s in sorted(skiresorts,reverse=True):
+         print (s)
+'''

@@ -1,0 +1,8 @@
+Vail, Colorado, 4.6, 33, $239.00
+Telluride, Colorado, 4.5, 19, $205.00
+Mammoth Mountain, California, 4.4, 25, $209.00
+Breckenridge, California, 4.3, 35, $219.00
+Heavenly, California, 4.1, 27, $179.00
+Steamboat, Colorado, 3.9, 17, $245.00
+Park City, Utah, 3.9, 42, $229.00
+Jackson Hole, Wyoming, 3.7, 13, $201.00

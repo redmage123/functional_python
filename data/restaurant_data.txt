@@ -1,0 +1,4 @@
+Alfredo's Italian Pizzeria, 1234 Main Street, Anytown, USA, Italian, 3
+Wong's Classic Chinese, 1236 Main Street, Anytown, USA, Chinese, 3
+Istanbul Kebabs, 1237 Main Street, Anytown, USA, Middle Eastern, 2
+Burgers 'n Stuff, 1238 Main Street, Anytown, USA, American, 4

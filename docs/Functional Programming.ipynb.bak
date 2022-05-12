@@ -36,7 +36,7 @@
     "\n",
     "3.  Functional programming focuses on processing data collections, such as lists.  These data collections are often used with recursion on sub-containers as a subustitute for loops.\n",
     "\n",
-    "4.  Many  \"Pure\" functional languages, such as Haskell avoids the concept of *side effects.*  Generally that means that we don't use variables to track and exchange state.  I.e. once a variable as an initial assignment, it is never changed, effectively making it constant.\n",
+    "4.  Many  \"Pure\" functional languages, such as Haskell avoide the concept of *side effects.*  Generally that means that we don't use variables to track and exchange state.  I.e. once a variable as an initial assignment, it is never changed, effectively making it constant. \n",
     "\n",
     "5.  Functional programming discouraged the idea of statements and instead evaluates expressions.  \n",
     "\n",
@@ -158,7 +158,7 @@
    "metadata": {},
    "source": [
     "## Creating customized iterators. \n",
-    "We will now look at some of the tools that we can use to create functional programs.  The first tool is the concept of an iterator.  Consider that we have a customized class called 'Restaurant'.  We create a specialized class called 'Restaurants' which is a container of Restaurant objects.  How would we be able to iterate over all of the Restaurants objects inside that  class?\n",
+    "We will now look at some of the tools that we can use to create functional programmers.  The first tool is the concept of an iterator.  Consider that we have a customized class called 'Restaurant'.  We create a specialized class called 'Restaurants' which is a container of Restaurant objects.  How would we be able to iterate over all of the Restaurants objects inside that  class?\n",
     "\n",
     "To do this, we need to implement two dunderscore methods provided to us, __iter__ and __next__\n",
     "the __iter__ method returns the iterator.  In the following exxample, the Restaurants class itself is the Iterator as well as the iterable object.  Note that this isn't required.  You can create the iterator seperately from the iterable object. \n",
@@ -186,9 +186,7 @@
     "    def __str__(self):\n",
     "        return f\" Restaurant Name: {self.name} Address {self.address} City {self.city} Country {self.country} Food Type {self.r_type} Rating {self.rating}\"\n",
     "        \n",
-    "\n",
-    "\n",
-    "\n",
+    "    \n",
     "class Restaurants:\n",
     "    def __init__(self):\n",
     "        self.restaurant_list = []\n",
@@ -248,7 +246,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 50,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -303,7 +301,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 60,
    "metadata": {},
    "outputs": [
     {
@@ -324,7 +322,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 52,
    "metadata": {},
    "outputs": [
     {
@@ -339,7 +337,7 @@
     }
    ],
    "source": [
-    "for r in sorted(restaurants):\n",
+    "for r in sorted(restaurants.returnList()):\n",
     "    print (r)"
    ]
   },
@@ -367,7 +365,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 58,
    "metadata": {},
    "outputs": [
     {
@@ -382,7 +380,7 @@
     }
    ],
    "source": [
-    "sortedbyname = sorted(restaurants, key = lambda x: x.name)\n",
+    "sortedbyname = sorted(restaurants.returnList(), key = lambda x: x.name)\n",
     "for r in sortedbyname:\n",
     "    print (r)"
    ]
@@ -438,31 +436,6 @@
     "for _ in range(10):\n",
     "    print (next(g))\n",
     "    \n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "Lazy vs. Eager evaluation\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 17,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "<class 'range'>\n"
-     ]
-    }
-   ],
-   "source": [
-    "x = range(10)\n",
-    "print (type(x))"
    ]
   },
   {
@@ -556,57 +529,6 @@
     "        (name, address, city, country, r_type, rating ) = line.strip().split(',')\n",
     "        r = Restaurant(name=name, address = address,city = city,country = country,  r_type = r_type, rating = rating)\n",
     "        restaurants.add_restaurant(r)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 18,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'foo'"
-      ]
-     },
-     "execution_count": 18,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "def genexample(x):\n",
-    "    \n",
-    "    while True:\n",
-    "        if x == 1:\n",
-    "            yield 'foo'\n",
-    "        else:\n",
-    "            yield 'bar'\n",
-    "            \n",
-    "g = genexample(1)   # First, assign the generator to a variable identifier. \n",
-    "next(g)\n",
-    "g.close()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 19,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'bar'"
-      ]
-     },
-     "execution_count": 19,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "h =  genexample(2)\n",
-    "next(h)"
    ]
   },
   {
@@ -763,7 +685,7 @@
    "source": [
     "## Python coroutines\n",
     "\n",
-    "Coroutines are very similar to generators, however, instead of generating output, coroutines consume input. \n",
+    "Coroutines are very similar to generators, however, instead of generating output, coroutines consume output. \n",
     "With generators, data is pulled through the pipeline using a for loop.  With coroutines, data is pushed through the pipeline using the coroutine send method. \n",
     "\n",
     "To start a coroutine, you must send it an initial method call, either the next() method or send(None).\n",
@@ -795,7 +717,6 @@
     "            \n",
     "gcou = grep('coroutine')\n",
     "next(gcou)\n",
-    "# gcou.send(None)\n",
     "\n",
     "data_list = [\"I love generators\", \"I love functions\",\"I love coroutines\"]\n",
     "\n",
@@ -821,9 +742,7 @@
   {
    "cell_type": "code",
    "execution_count": 143,
-   "metadata": {
-    "scrolled": true
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -1096,28 +1015,6 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def get_data(city, param1, param2, param3):\n",
-    "    pass\n",
-    "\n",
-    "def get_data_stockholm(param1,param2,param3):\n",
-    "    return get_data('Stockholm',param1,param2,param3)\n",
-    "\n",
-    "def get_data_malmo(param1,param2,param3):\n",
-    "    return get_data('Malmo',param1,param2,param3)\n",
-    "\n",
-    "for _ in range(10)L\n",
-    "    get_data_stockholm(blah,blah,blah)\n",
-    "    get_data_malmo(blah,blbah,blah)\n",
-    "    \n",
-    "    "
-   ]
-  },
-  {
-   "cell_type": "code",
    "execution_count": 154,
    "metadata": {},
    "outputs": [
@@ -1141,248 +1038,16 @@
    ]
   },
   {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## Understanding monads\n",
-    "\n",
-    "Functional programming uses the concept of functions as our primary building block and the concept of composing functions in order to structure code. \n",
-    "\n",
-    "For example, we could write a line of Python like so:\n",
-    "\n",
-    "str(neg(int(x)))\n",
-    "\n",
-    "This code takes a string value, storeed with the identifier x, converts it to an integer, negates it, and then converts it back into a string. \n",
-    "\n",
-    "So, for example if x = \"1\", the final result should be \"-1\".\n",
-    "But, what happens if the initial value of x is something like \"ABC\"?\n",
-    "The result would be that an exception would be thrown, and we would either end up in an error handler, or the program would simply terminate with a ValueError exception. \n",
-    "\n",
-    "These are unpredictable actions that functional programming tries to avoid. \n",
-    "\n",
-    "What if we could instead, have the int(), the neg() and the str() functions return **two** values?\n",
-    "First, the output of the function, and second a flag that says whether the function succeeded or failed.\n",
-    "\n",
-    "This failure flag can be thought of as *context* around the data itself.  If the failure flag is False, then the data is valid. \n",
-    "If the failure flag is True, then the data is invalid and should be ignored. \n",
-    "\n",
-    "We can take this further, what if the neg() function could check the value of the failure flag passed to it from the int() function?  If the failure flag passed in from int() is True, then don't try and do the negation, simply return the None type and the Failure flag True. \n",
-    "\n",
-    "The str() function would also exhibit the exact same behavior. \n",
-    "Unfortunately for us, none of these functions work this way in Python.  So, we'll have to do it ourselves. \n",
-    "\n",
-    "Enter the concept of the *monad*. \n",
-    "A monad is a software design pattern that allows us to add context to data values. \n",
-    "We can now compose existing functions and provice a context to them in terms of the Failure flag. \n",
-    "\n",
-    "Let's sese how this would work. \n",
-    "\n"
-   ]
-  },
-  {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 161,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "1 False\n"
-     ]
-    }
-   ],
-   "source": [
-    "class Failure: \n",
-    "    def __init__(self,value,Failed = False):\n",
-    "        self.value = value\n",
-    "        self.failed = Failed\n",
-    "        \n",
-    "    def get(self):\n",
-    "        return self.value\n",
-    "    \n",
-    "    def isFailed(self):\n",
-    "        return self.failed\n",
-    "    \n",
-    "    def __str__(self):\n",
-    "        return ' '.join([str(self.value), str(self.failed)])\n",
-    "    \n",
-    "    def bind(self,f):\n",
-    "        if self.failed:\n",
-    "            return self\n",
-    "        try:\n",
-    "            x = f(self.get())  # f() is, in this case int()  \n",
-    "            return Failure(x)\n",
-    "        except:\n",
-    "            return Failure(None,True)\n",
-    "        \n",
-    "x = '1'\n",
-    "y = int('1')\n",
-    "# y is going contain a tuple of (1,False)\n",
-    "# If, instead, I got an int('abc')\n",
-    "y = Failure(x).bind(int)\n",
-    "print (y)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "This class holds a value, and a failed flag, that are set when the object is created. It also overrides the __str__ function. This function implements the str built-in function, and it is also called when you print the object. It displays both the value and the failure state of the object.\n",
-    "\n",
-    "The thing that turns this into a monad is the bind function.\n",
-    "In this code, we create a Failure monad with the value “1”. We then bind the int function to the monad. Here is what bind does:\n",
-    "\n",
-    "It extracts the value from the monad.\n",
-    "It applies the function to the value.\n",
-    "It then returns the result, wrapped in a new monad."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "Since bind returns a Failure monad, we can apply neg and str too. neg is actually a function from the operators module, so we must import it:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 7,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "-1 False\n"
-     ]
-    }
-   ],
-   "source": [
-    "from operator import neg\n",
-    "\n",
-    "x = '1'\n",
-    "y = Failure(x).bind(int).bind(neg).bind(str)\n",
-    "print(y)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 8,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "None True\n"
-     ]
-    }
-   ],
-   "source": [
-    "x = 'ABC'\n",
-    "y = Failure(x).bind(int).bind(neg).bind(str)\n",
-    "print(y)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "1.  int('ABC') gets called.  It throws an exception.\n",
-    "2.  The exception returns another Failed object with the initial values of (None, True)\n",
-    "3.  The second bound function (neg) tests, is self.failed equal to True. \n",
-    "4.  It is true, so therefore, it just returns itself, which again, has the value None and True\n",
-    "5.  The thid bound function (str) tests if the failed flag is True. \n",
-    "6.  It is true.  Therefore it returns another Failed object with the value (None, True)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "When we bind neg to this value, the bind method detects that the failed flag is set. It doesn't call neg at all, it just returns itself (ie a failed monad). The same thing happens when we bind str to the result. So:\n",
-    "\n",
-    "If all the functions operate without failure, the final result is a Failure monad containing the calculated value, with the failed flag set to false.\n",
-    "If any function fails, the remaining functions don’t execute and the result is a Failure monad with the failed flag set to true.\n",
-    "\n",
-    "We can take this even further."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 9,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "-1 False\n"
-     ]
-    }
-   ],
-   "source": [
-    "class Failure: \n",
-    "    def __init__(self,value,Failed = False):\n",
-    "        self.value = value\n",
-    "        self.failed = Failed\n",
-    "        \n",
-    "    def get(self):\n",
-    "        return self.value\n",
-    "    \n",
-    "    def isFailed(self):\n",
-    "        return self.failed\n",
-    "    \n",
-    "    def __str__(self):\n",
-    "        return ' '.join([str(self.value), str(self.failed)])\n",
-    "    \n",
-    "    def bind(self,f):\n",
-    "        if self.failed:\n",
-    "            return self\n",
-    "        try:\n",
-    "            x = f(self.get())\n",
-    "            return Failure(x)\n",
-    "        except:\n",
-    "            return Failure(None,True)\n",
-    "        \n",
-    "    def __or__(self,f):\n",
-    "        return self.bind(f)\n",
-    "    \n",
-    "x = '1'\n",
-    "y = Failure(x) | int | neg | str\n",
-    "print (y)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "We can add the following method to our monad, to override the or operator (symbol |) to invoke bind."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 21,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
+      "<class 'int'>\n",
       "3,2\n"
-     ]
-    },
-    {
-     "ename": "ValueError",
-     "evalue": "Invalid value for setter",
-     "output_type": "error",
-     "traceback": [
-      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
-      "\u001b[1;31mValueError\u001b[0m                                Traceback (most recent call last)",
-      "\u001b[1;32m<ipython-input-21-2c958ed1f07d>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[0;32m     34\u001b[0m \u001b[1;31m# p.setX(some_val)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     35\u001b[0m \u001b[0msome_val\u001b[0m \u001b[1;33m=\u001b[0m \u001b[1;34m'ABC'\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 36\u001b[1;33m \u001b[0mp\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mx\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0msome_val\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     37\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n",
-      "\u001b[1;32m<ipython-input-21-2c958ed1f07d>\u001b[0m in \u001b[0;36mx\u001b[1;34m(self, new)\u001b[0m\n\u001b[0;32m     14\u001b[0m             \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m__x\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mnew\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     15\u001b[0m         \u001b[1;32melse\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 16\u001b[1;33m             \u001b[1;32mraise\u001b[0m \u001b[0mValueError\u001b[0m \u001b[1;33m(\u001b[0m\u001b[1;34m\"Invalid value for setter\"\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     17\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     18\u001b[0m     \u001b[1;33m@\u001b[0m\u001b[0mproperty\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
-      "\u001b[1;31mValueError\u001b[0m: Invalid value for setter"
      ]
     }
    ],
@@ -1399,10 +1064,9 @@
     "    \n",
     "    @x.setter\n",
     "    def x(self,new):\n",
+    "        print (type(new))\n",
     "        if type(new) is int:\n",
     "            self.__x = new\n",
-    "        else:\n",
-    "            raise ValueError (\"Invalid value for setter\")\n",
     "        \n",
     "    @property\n",
     "    def y(self):\n",
@@ -1417,35 +1081,27 @@
     "        return str(self.__x) + \",\" + str(self.__y)\n",
     "        \n",
     "p = Point(1,2)\n",
-    "print (p.x)\n",
     "p.x = 3\n",
     "print (p)\n",
-    "\n",
-    "# p.setX(some_val)\n",
-    "some_val = 'ABC'\n",
-    "p.x = some_val\n",
     "        "
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 23,
+   "execution_count": 158,
    "metadata": {},
    "outputs": [
     {
-     "data": {
-      "text/plain": [
-       "'C:\\\\Users\\\\bbrel'"
-      ]
-     },
-     "execution_count": 23,
-     "metadata": {},
-     "output_type": "execute_result"
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'int'>\n"
+     ]
     }
    ],
    "source": [
-    "import os\n",
-    "os.getcwd()"
+    "a = 5\n",
+    "print (type(a))"
    ]
   }
  ],

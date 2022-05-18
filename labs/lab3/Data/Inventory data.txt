@@ -1,0 +1,11 @@
+Product SKU	Product Name	Unit Price	Quantity
+123A1,School of Boxing, 599.99, 5
+512B3,Anvil,199.99, 10
+719G6,Toaster, 29.99, 100
+923K4,Super Outfit, 21.99, 27
+516N4,Hen Grenade, 5.99, 74
+752U5,Aspirin, 9.99, 261
+771L5,Rocket-Powered Roller Skates, 199.99, 9
+261N2, BirdSeed, 5.99, 255
+105B9, Detonator, 39.99, 4
+149H8, Triple-Strength Fortified Let Muscle Vitamins, 45.99, 7
